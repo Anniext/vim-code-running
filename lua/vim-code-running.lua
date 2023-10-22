@@ -49,8 +49,8 @@ end
 
 function M.setup()
   -- 添加自定义命令来调用编译函数
-  vim.cmd('command! Compile :lua require(\'plugins.compiler\').build()')
-  vim.cmd('command! Run :lua require(\'plugins.compiler\').run()')
+  vim.cmd('command! Compile :lua require(\'vim-code-running\').build()')
+  vim.cmd('command! Run :lua require(\'vim-code-running\').run()')
 end
 
 return M
