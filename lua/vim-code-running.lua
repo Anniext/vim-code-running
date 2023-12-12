@@ -15,10 +15,15 @@ function M.build()
   local filetype = vim.bo.filetype
   local compiler = compiler_list(filetype)
 
-  if compiler then
+  if compiler and filetype == 'cpp' then
     local filename = vim.fn.expand('%:t:r')
     local executable = filename
     local command = string.format('%s -o %s %s -O2 -g -std=c++11', compiler, executable, vim.fn.expand('%'))
+    vim.cmd('silent !' .. command)
+  elseif compiler and filetype == 'go' then
+    local filename = vim.fn.expand('%:t:r')
+    local executable = filename
+    local command = string.format('%s build -o %s %s', compiler, executable, vim.fn.expand('%'))
     vim.cmd('silent !' .. command)
   else
     print('No compiler found for this file type')
